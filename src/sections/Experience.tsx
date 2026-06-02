@@ -2,7 +2,7 @@ import React from "react";
 import { Briefcase, Calendar, Plus, ExternalLink, Image as ImageIcon } from "lucide-react";
 import { useModal } from "../hooks/useModal";
 import { Modal } from "../components/ui/Modal";
-import { experiencesData } from "../constants/portfolioData";
+import { experiencesData, portfolioText } from "../constants/portfolioData";
 import type { Experience } from "../constants/portfolioData";
 import { AnimatedButton } from "../components/ui/AnimatedButton";
 
@@ -27,7 +27,7 @@ export const ExperienceSection: React.FC = () => {
         {shouldTruncate && (
           <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-950/60 text-indigo-300 border border-indigo-500/20 flex items-center gap-0.5">
             <Plus className="w-3 h-3" />
-            {remainingCount} more
+            {remainingCount} {portfolioText.experience.moreBadge}
           </span>
         )}
       </div>
@@ -38,13 +38,13 @@ export const ExperienceSection: React.FC = () => {
     <section id="experience" className="py-20 md:py-28 px-4 md:px-12 max-w-7xl mx-auto w-full">
       <div className="text-left mb-12 md:mb-16">
         <span className="text-blue-500 font-bold uppercase tracking-wider text-xs md:text-sm">
-          Career Journey
+          {portfolioText.experience.journeyTag}
         </span>
         <h2 className="text-3xl md:text-5xl font-extrabold text-white mt-2">
-          Professional Experience
+          {portfolioText.experience.title}
         </h2>
         <p className="text-slate-400 text-sm md:text-base mt-4 max-w-2xl leading-relaxed">
-          A track record of engineering scalable backend microservices, streamlining streaming event networks, and optimizing SQL and Redis database caches.
+          {portfolioText.experience.description}
         </p>
       </div>
 
@@ -88,7 +88,7 @@ export const ExperienceSection: React.FC = () => {
                   onClick={() => openModal(exp)}
                   className="px-4 py-2 text-xs font-semibold"
                 >
-                  View Details
+                  {portfolioText.experience.viewDetailsBtn}
                   <ExternalLink className="w-3.5 h-3.5 ml-1" />
                 </AnimatedButton>
               </div>
@@ -111,7 +111,7 @@ export const ExperienceSection: React.FC = () => {
             </div>
 
             <div className="space-y-3">
-              <h4 className="text-white font-bold tracking-wide">Detailed Scope & Contributions</h4>
+              <h4 className="text-white font-bold tracking-wide">{portfolioText.experience.modalScopeTitle}</h4>
               <p className="text-slate-300 text-sm leading-relaxed whitespace-pre-line">
                 {selectedExp.longDescription}
               </p>
@@ -119,7 +119,7 @@ export const ExperienceSection: React.FC = () => {
 
             {/* Display complete tools list */}
             <div>
-              <h4 className="text-white font-bold tracking-wide mb-3">Technologies Implemented</h4>
+              <h4 className="text-white font-bold tracking-wide mb-3">{portfolioText.experience.modalTechTitle}</h4>
               <div className="flex flex-wrap gap-2">
                 {selectedExp.tools.map((tool, idx) => (
                   <span
@@ -134,17 +134,17 @@ export const ExperienceSection: React.FC = () => {
 
             {/* Screenshots Placeholder block */}
             <div className="pt-2">
-              <h4 className="text-white font-bold tracking-wide mb-3">System Architecture / Screenshot Placeholders</h4>
+              <h4 className="text-white font-bold tracking-wide mb-3">{portfolioText.experience.modalScreenshotsTitle}</h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex flex-col items-center justify-center p-6 border border-dashed border-slate-800 rounded-xl bg-slate-950/80 text-center text-slate-500 h-32 select-none">
                   <ImageIcon className="w-6 h-6 mb-2 text-slate-600" />
-                  <span className="text-xs font-semibold text-slate-400">Microservice Pipeline Mesh</span>
-                  <span className="text-[10px] text-slate-600 mt-1">Docker Compose Stack Setup</span>
+                  <span className="text-xs font-semibold text-slate-400">{portfolioText.experience.placeholder1Title}</span>
+                  <span className="text-[10px] text-slate-600 mt-1">{portfolioText.experience.placeholder1Subtitle}</span>
                 </div>
                 <div className="flex flex-col items-center justify-center p-6 border border-dashed border-slate-800 rounded-xl bg-slate-950/80 text-center text-slate-500 h-32 select-none">
                   <ImageIcon className="w-6 h-6 mb-2 text-slate-600" />
-                  <span className="text-xs font-semibold text-slate-400">Database Index Query Optimizer</span>
-                  <span className="text-[10px] text-slate-600 mt-1">OracleDB Explain Plan Mockup</span>
+                  <span className="text-xs font-semibold text-slate-400">{portfolioText.experience.placeholder2Title}</span>
+                  <span className="text-[10px] text-slate-600 mt-1">{portfolioText.experience.placeholder2Subtitle}</span>
                 </div>
               </div>
             </div>

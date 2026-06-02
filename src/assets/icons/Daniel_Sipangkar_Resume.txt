@@ -1,0 +1,17 @@
+========================================
+DANIEL SIPANGKAR - RESUME
+========================================
+Role: Backend & Frontend Developer (Full-Stack)
+Email: daniel222mu@gmail.com
+LinkedIn: https://www.linkedin.com/in/daniel-sipangkar/
+WhatsApp: https://wa.me/6282272253799
+
+TECHNICAL SKILLS:
+- Languages: Java, JavaScript, TypeScript
+- Frameworks: Spring Boot, React, Angular, Express
+- Databases: PostgreSQL, OracleDB, Redis
+- Streaming & Search: Apache Kafka, Elasticsearch (Elastic)
+- Reporting: Jasper Reports
+
+EXPERIENCE SUMMARY:
+3+ years of experience engineering high-performance API structures, microservices architectures, data caching strategies, and robust client portals.

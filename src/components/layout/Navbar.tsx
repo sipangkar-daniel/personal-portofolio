@@ -2,18 +2,13 @@ import React, { useState } from "react";
 import { Menu, X, Terminal } from "lucide-react";
 import { useScrollResize } from "../../hooks/useScrollResize";
 import { cn } from "../../utils/cn";
-import { aboutData } from "../../constants/portfolioData";
+import { aboutData, portfolioText } from "../../constants/portfolioData";
 
 export const Navbar: React.FC = () => {
   const isScrolled = useScrollResize(60);
   const [isOpen, setIsOpen] = useState(false);
 
-  const navLinks = [
-    { label: "About", href: "#about" },
-    { label: "Experience", href: "#experience" },
-    { label: "Project", href: "#projects" },
-    { label: "Contact Me", href: "#contact" },
-  ];
+  const navLinks = portfolioText.navbar.navLinks;
 
   return (
     <nav
@@ -30,21 +25,19 @@ export const Navbar: React.FC = () => {
           <Terminal className="w-4 h-4" />
         </div>
         <span className="text-white font-bold text-lg tracking-wider group-hover:text-blue-400 transition-colors duration-200">
-          Daniel Sipangkar
+          {portfolioText.navbar.brandName}
         </span>
       </a>
 
       {/* Desktop Menu */}
-      <div className="hidden md:flex items-center gap-8">
+      <div className="hidden md:flex items-center gap-4">
         {navLinks.map((link) => (
           <a
             key={link.label}
             href={link.href}
-            className="text-slate-300 hover:text-blue-400 font-medium text-sm transition-colors duration-200 relative py-1 group"
+            className="text-slate-300 hover:text-blue-400 hover:bg-blue-950/20 hover:border-blue-900/30 border border-transparent px-3 py-1.5 rounded-lg font-medium text-sm transition-all duration-300 hover:shadow-[0_0_15px_rgba(59,130,246,0.15)]"
           >
             {link.label}
-            {/* Sliding underline hover effect */}
-            <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-blue-500 transition-all duration-300 group-hover:w-full" />
           </a>
         ))}
       </div>
@@ -55,7 +48,7 @@ export const Navbar: React.FC = () => {
           href="#contact"
           className="px-4 py-2 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-500 rounded-lg transition-all duration-200 shadow-md shadow-blue-900/20"
         >
-          Let's Talk
+          {portfolioText.navbar.ctaText}
         </a>
       </div>
 
@@ -76,7 +69,7 @@ export const Navbar: React.FC = () => {
         )}
       >
         <div className="flex items-center justify-between border-b border-slate-800/80 pb-4">
-          <span className="text-white font-bold tracking-wider">Navigation</span>
+          <span className="text-white font-bold tracking-wider">{portfolioText.navbar.drawerTitle}</span>
           <button
             onClick={() => setIsOpen(false)}
             className="text-slate-400 hover:text-white transition-colors duration-200"
@@ -105,7 +98,7 @@ export const Navbar: React.FC = () => {
             rel="noopener noreferrer"
             className="block text-center text-xs font-semibold text-white bg-blue-600 py-2.5 rounded-lg hover:bg-blue-500 transition-all duration-200"
           >
-            LinkedIn Contact
+            {portfolioText.navbar.linkedinBtn}
           </a>
         </div>
       </div>

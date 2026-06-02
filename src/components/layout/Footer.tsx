@@ -1,6 +1,6 @@
 import React from "react";
 import { Terminal, Heart } from "lucide-react";
-import { aboutData } from "../../constants/portfolioData";
+import { aboutData, portfolioText } from "../../constants/portfolioData";
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -13,15 +13,15 @@ export const Footer: React.FC = () => {
         <div className="flex items-center gap-2">
           <Terminal className="w-4 h-4 text-blue-500" />
           <span className="text-slate-400 text-xs font-semibold tracking-wider font-mono">
-            SYSTEM CORE: ACTIVE | RESPONDING 200 OK
+            {portfolioText.footer.systemCore}
           </span>
         </div>
 
         {/* Copyright Center */}
         <div className="flex items-center gap-1.5 text-xs text-slate-500">
-          <span>&copy; {currentYear} {aboutData.name}. Crafted with</span>
+          <span>&copy; {currentYear} {aboutData.name}. {portfolioText.footer.craftedWith}</span>
           <Heart className="w-3 h-3 text-red-500 fill-current animate-pulse" />
-          <span>using React & Spring Boot.</span>
+          <span>{portfolioText.footer.usingText}</span>
         </div>
 
         {/* Social Anchors Right */}

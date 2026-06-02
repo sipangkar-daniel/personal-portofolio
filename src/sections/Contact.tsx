@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Send, CheckCircle, Mail, MessageSquare } from "lucide-react";
 import { AnimatedButton } from "../components/ui/AnimatedButton";
-import { aboutData } from "../constants/portfolioData";
+import { aboutData, portfolioText } from "../constants/portfolioData";
 
 export const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -18,7 +18,7 @@ export const ContactSection: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) {
-      setErrorMsg("Please fill in all inputs before transmission.");
+      setErrorMsg(portfolioText.contact.errorEmptyInputs);
       return;
     }
 
@@ -45,15 +45,15 @@ export const ContactSection: React.FC = () => {
         <div className="lg:col-span-5 flex flex-col justify-center text-left space-y-6">
           <div>
             <span className="text-blue-500 font-bold uppercase tracking-wider text-xs md:text-sm">
-              Let's Connect
+              {portfolioText.contact.connectTag}
             </span>
             <h2 className="text-3xl md:text-5xl font-extrabold text-white mt-2">
-              Get In Touch
+              {portfolioText.contact.title}
             </h2>
           </div>
           
           <p className="text-slate-400 text-sm md:text-base leading-relaxed">
-            Interested in adding a high-throughput Java Spring Boot backend, a robust microservice architecture, or building full-stack dashboards? Let's align! Fill in the console stream or reach out via direct link.
+            {portfolioText.contact.description}
           </p>
 
           <div className="space-y-4 pt-4">
@@ -66,7 +66,7 @@ export const ContactSection: React.FC = () => {
                 <Mail className="w-5 h-5" />
               </div>
               <div>
-                <div className="text-[10px] text-slate-500 uppercase tracking-widest font-semibold">Email Dispatch</div>
+                <div className="text-[10px] text-slate-500 uppercase tracking-widest font-semibold">{portfolioText.contact.emailDispatchLabel}</div>
                 <div className="text-sm font-semibold text-slate-200 group-hover:text-blue-400 transition-colors">
                   {aboutData.socialLinks.email}
                 </div>
@@ -84,9 +84,9 @@ export const ContactSection: React.FC = () => {
                 <MessageSquare className="w-5 h-5" />
               </div>
               <div>
-                <div className="text-[10px] text-slate-500 uppercase tracking-widest font-semibold">Instant Telephony</div>
+                <div className="text-[10px] text-slate-500 uppercase tracking-widest font-semibold">{portfolioText.contact.telephonyLabel}</div>
                 <div className="text-sm font-semibold text-slate-200 group-hover:text-blue-400 transition-colors">
-                  +62 822 7225 3799
+                  {portfolioText.contact.telephonyValue}
                 </div>
               </div>
             </a>
@@ -101,13 +101,13 @@ export const ContactSection: React.FC = () => {
 
             <form onSubmit={handleSubmit} className="space-y-6 text-left relative z-10">
               <h3 className="text-xl font-bold text-white tracking-wide border-b border-slate-800 pb-3">
-                API Messaging Form
+                {portfolioText.contact.formTitle}
               </h3>
 
               {/* Name Input */}
               <div className="space-y-2">
                 <label htmlFor="name" className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
-                  Your Name
+                  {portfolioText.contact.nameLabel}
                 </label>
                 <input
                   type="text"
@@ -115,7 +115,7 @@ export const ContactSection: React.FC = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  placeholder="John Doe"
+                  placeholder={portfolioText.contact.namePlaceholder}
                   className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-white rounded-xl px-4 py-3 text-sm transition-all duration-200 outline-none placeholder:text-slate-600"
                 />
               </div>
@@ -123,7 +123,7 @@ export const ContactSection: React.FC = () => {
               {/* Email Input */}
               <div className="space-y-2">
                 <label htmlFor="email" className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
-                  Email Address
+                  {portfolioText.contact.emailLabel}
                 </label>
                 <input
                   type="email"
@@ -131,7 +131,7 @@ export const ContactSection: React.FC = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="john@example.com"
+                  placeholder={portfolioText.contact.emailPlaceholder}
                   className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-white rounded-xl px-4 py-3 text-sm transition-all duration-200 outline-none placeholder:text-slate-600"
                 />
               </div>
@@ -139,14 +139,14 @@ export const ContactSection: React.FC = () => {
               {/* Message Input */}
               <div className="space-y-2">
                 <label htmlFor="message" className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
-                  Payload Message
+                  {portfolioText.contact.messageLabel}
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder="Describe your project, system architecture requirements, or role openings..."
+                  placeholder={portfolioText.contact.messagePlaceholder}
                   rows={5}
                   className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-white rounded-xl px-4 py-3 text-sm transition-all duration-200 outline-none resize-none placeholder:text-slate-600"
                 />
@@ -163,7 +163,7 @@ export const ContactSection: React.FC = () => {
               {isSuccess && (
                 <div className="text-xs font-semibold text-emerald-400 bg-emerald-950/20 border border-emerald-500/20 px-4 py-3 rounded-lg flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-emerald-400 animate-bounce" />
-                  <span>Success: Message logged. Synchronization completes shortly. Thank you!</span>
+                  <span>{portfolioText.contact.successMsg}</span>
                 </div>
               )}
 
@@ -181,12 +181,12 @@ export const ContactSection: React.FC = () => {
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
-                      Transmitting Data...
+                      {portfolioText.contact.transmittingText}
                     </span>
                   ) : (
                     <span className="flex items-center gap-2 justify-center">
                       <Send className="w-4 h-4" />
-                      Send Message
+                      {portfolioText.contact.sendBtn}
                     </span>
                   )}
                 </AnimatedButton>

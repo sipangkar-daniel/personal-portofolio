@@ -5,16 +5,19 @@ import type { Project } from "../../constants/portfolioData";
 interface HeroParallaxProps {
   projects: Project[];
   onProjectClick: (project: Project) => void;
+  title?: string;
+  description?: string;
 }
 
 export const HeroParallax: React.FC<HeroParallaxProps> = ({
   projects,
   onProjectClick,
+  title,
+  description,
 }) => {
-  // Split projects into three rows
-  const firstRow = projects.slice(0, 2);
-  const secondRow = projects.slice(2, 4);
-  const thirdRow = projects.slice(4, 6);
+  // Split projects into two rows of three cards each
+  const firstRow = projects.slice(0, 3);
+  const secondRow = projects.slice(3, 6);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -26,15 +29,11 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({
 
   // Horizontal translation effects
   const translateX = useSpring(
-    useTransform(scrollYProgress, [0, 1], [0, 180]),
+    useTransform(scrollYProgress, [0, 1], [-80, 80]),
     springConfig
   );
   const translateXReverse = useSpring(
-    useTransform(scrollYProgress, [0, 1], [0, -180]),
-    springConfig
-  );
-  const translateXThird = useSpring(
-    useTransform(scrollYProgress, [0, 1], [0, 120]),
+    useTransform(scrollYProgress, [0, 1], [80, -80]),
     springConfig
   );
 
@@ -61,7 +60,7 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({
       ref={containerRef}
       className="py-10 md:py-20 overflow-hidden bg-slate-950 flex flex-col self-stretch [perspective:1000px] [transform-style:preserve-3d] relative"
     >
-      <Header />
+      <Header title={title} description={description} />
       
       <motion.div
         style={{
@@ -70,10 +69,10 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({
           translateY,
           opacity,
         }}
-        className="flex flex-col gap-10 md:gap-16"
+        className="flex flex-col gap-10 md:gap-16 items-center justify-center"
       >
         {/* Row 1 */}
-        <motion.div className="flex flex-row-reverse space-x-reverse space-x-6 md:space-x-12 overflow-hidden py-1">
+        <motion.div className="flex flex-row-reverse space-x-reverse space-x-6 md:space-x-12 overflow-hidden py-1 justify-center w-full">
           {firstRow.map((project) => (
             <ProjectCard
               project={project}
@@ -85,23 +84,11 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({
         </motion.div>
 
         {/* Row 2 */}
-        <motion.div className="flex flex-row space-x-6 md:space-x-12 overflow-hidden py-1">
+        <motion.div className="flex flex-row space-x-6 md:space-x-12 overflow-hidden py-1 justify-center w-full">
           {secondRow.map((project) => (
             <ProjectCard
               project={project}
               translate={translateXReverse}
-              key={project.id}
-              onClick={() => onProjectClick(project)}
-            />
-          ))}
-        </motion.div>
-
-        {/* Row 3 */}
-        <motion.div className="flex flex-row-reverse space-x-reverse space-x-6 md:space-x-12 overflow-hidden py-1">
-          {thirdRow.map((project) => (
-            <ProjectCard
-              project={project}
-              translate={translateXThird}
               key={project.id}
               onClick={() => onProjectClick(project)}
             />
@@ -112,14 +99,14 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({
   );
 };
 
-const Header = () => {
+const Header = ({ title, description }: { title?: string; description?: string }) => {
   return (
     <div className="max-w-7xl mx-auto px-4 w-full py-12 md:py-20 relative z-10 flex flex-col justify-start">
       <h2 className="text-4xl md:text-7xl font-extrabold text-white tracking-tight">
-        Featured Projects
+        {title || "Featured Projects"}
       </h2>
       <p className="max-w-2xl text-base md:text-xl mt-6 text-slate-400 leading-relaxed">
-        Explore a curated collection of high-performance microservices, API engines, caching layers, and responsive full-stack solutions built using Java Spring Boot and React.
+        {description || "Explore a curated collection of high-performance microservices, API engines, caching layers, and responsive full-stack solutions built using Java Spring Boot and React."}
       </p>
     </div>
   );

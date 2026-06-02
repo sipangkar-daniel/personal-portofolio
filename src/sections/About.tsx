@@ -3,10 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Download, ArrowRight, Mail, MessageSquare } from "lucide-react";
 import { BackgroundRipple } from "../components/ui/BackgroundRipple";
 import { FlipWords } from "../components/ui/FlipWords";
-import { CanvasRevealEffect } from "../components/ui/CanvasRevealEffect";
 import { ToolCard } from "../components/ui/ToolCard";
 import { AnimatedButton } from "../components/ui/AnimatedButton";
-import { aboutData, toolsData } from "../constants/portfolioData";
+import { aboutData, toolsData, portfolioText } from "../constants/portfolioData";
 
 export const About: React.FC = () => {
   const [showSocials, setShowSocials] = useState(false);
@@ -14,30 +13,26 @@ export const About: React.FC = () => {
   // Trigger dynamic text file download for Resume
   const triggerResumeDownload = () => {
     const resumeText = `
-========================================
-DANIEL SIPANGKAR - RESUME
-========================================
-Role: Backend & Frontend Developer (Full-Stack)
-Email: daniel222mu@gmail.com
-LinkedIn: https://www.linkedin.com/in/daniel-sipangkar/
-WhatsApp: +6282272253799
+${portfolioText.about.resumeHeaderLine}
+${portfolioText.about.resumeHeaderText}
+${portfolioText.about.resumeHeaderLine}
+${portfolioText.about.resumeRoleLabel}
+${portfolioText.about.resumeEmailLabel} ${aboutData.socialLinks.email}
+${portfolioText.about.resumeLinkedInLabel} ${aboutData.socialLinks.linkedin}
+${portfolioText.about.resumeWhatsAppLabel} ${aboutData.socialLinks.whatsapp}
 
-TECHNICAL SKILLS:
-- Languages: Java, JavaScript, TypeScript
-- Frameworks: Spring Boot, React, Angular, Express
-- Databases: PostgreSQL, OracleDB, Redis
-- Streaming & Search: Apache Kafka, Elasticsearch (Elastic)
-- Reporting: Jasper Reports
+${portfolioText.about.resumeSkillsLabel}
+${portfolioText.about.resumeSkillsList.join("\n")}
 
-EXPERIENCE SUMMARY:
-3+ years of experience engineering high-performance API structures, microservices architectures, data caching strategies, and robust client portals.
+${portfolioText.about.resumeSummaryLabel}
+${portfolioText.about.resumeSummaryText}
     `.trim();
 
     const blob = new Blob([resumeText], { type: "text/plain;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = "Daniel_Sipangkar_Resume.txt";
+    link.download = portfolioText.about.resumeFilename;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -52,12 +47,12 @@ EXPERIENCE SUMMARY:
           {/* Top Left Row - Text content & Buttons */}
           <div className="lg:col-span-7 flex flex-col justify-center space-y-6 text-left">
             <span className="text-blue-500 font-bold uppercase tracking-wider text-xs md:text-sm">
-              Welcome to My Portfolio
+              {portfolioText.about.welcomeTag}
             </span>
             
-            <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight">
-              Hi, I'm <br className="md:hidden" />
-              <FlipWords words={["Daniel Sipangkar", "Backend Developer", "Mobile Developer"]} duration={2800} />
+            <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight min-h-[110px] sm:min-h-[85px] md:min-h-[60px]">
+              {portfolioText.about.greetingPrefix} <br className="md:hidden" />
+              <FlipWords words={aboutData.flipWords} duration={2800} />
             </h1>
 
             {/* Gently fading description */}
@@ -67,7 +62,7 @@ EXPERIENCE SUMMARY:
               transition={{ delay: 0.2, duration: 0.6 }}
               className="text-slate-400 text-sm md:text-base leading-relaxed"
             >
-              {aboutData.description} Specialized in creating microservices pipelines, secure database querying, and data sync engines, whilst implementing responsive user-facing panels to deliver a complete, highly optimized stack.
+              {aboutData.description} {portfolioText.about.descriptionSuffix}
             </motion.p>
 
             {/* Actions Grid */}
@@ -78,17 +73,20 @@ EXPERIENCE SUMMARY:
                 onClick={triggerResumeDownload}
               >
                 <Download className="w-4 h-4 mr-1 text-blue-400 animate-bounce" />
-                My Resume
+                {portfolioText.about.resumeBtn}
               </AnimatedButton>
 
-              {/* Toggle On Touch social sliding menu */}
-              <div className="relative flex flex-col sm:flex-row items-center gap-3">
+              {/* Toggle On Touch social sliding menu (on hover) */}
+              <div 
+                className="relative flex flex-col sm:flex-row items-center gap-3"
+                onMouseEnter={() => setShowSocials(true)}
+                onMouseLeave={() => setShowSocials(false)}
+              >
                 <AnimatedButton
                   variant="hover-gradient"
-                  onClick={() => setShowSocials(!showSocials)}
                   className="w-full sm:w-auto"
                 >
-                  On Touch
+                  {portfolioText.about.onTouchBtn}
                   <ArrowRight className={`w-4 h-4 ml-1 transition-transform duration-300 ${showSocials ? "rotate-90" : "rotate-0"}`} />
                 </AnimatedButton>
 
@@ -141,39 +139,39 @@ EXPERIENCE SUMMARY:
             </div>
           </div>
 
-          {/* Top Right Row - Canvas reveal profile picture */}
-          <div className="lg:col-span-5 h-[320px] md:h-[400px] w-full">
-            <CanvasRevealEffect>
-              <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center select-none">
+          {/* Top Right Row - Clean Profile Picture Card */}
+          <div className="lg:col-span-5 h-[320px] md:h-[400px] w-full flex items-center justify-center z-20">
+            <div className="relative overflow-hidden w-full h-full bg-slate-900/60 rounded-2xl border border-slate-800 flex items-center justify-center group shadow-xl">
+              <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 via-transparent to-purple-500/5 opacity-60 pointer-events-none" />
+              <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
+              
+              <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center select-none z-10 relative">
                 {/* Default Placeholder Avatar */}
-                <div className="w-28 h-28 md:w-36 md:h-36 rounded-full border-2 border-slate-700 bg-slate-900 flex items-center justify-center shadow-lg group-hover:scale-95 group-hover:border-blue-500/80 transition-all duration-500 overflow-hidden">
+                <div className="w-28 h-28 md:w-36 md:h-36 rounded-full border-2 border-slate-700 bg-slate-950 flex items-center justify-center shadow-lg group-hover:scale-105 group-hover:border-blue-500 transition-all duration-500 overflow-hidden">
                   <svg className="w-16 h-16 text-slate-400 group-hover:text-blue-400 transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                   </svg>
                 </div>
                 
-                <h3 className="text-white font-bold text-lg mt-4 group-hover:text-blue-400 transition-colors duration-500">
+                <h3 className="text-white font-bold text-lg mt-4 group-hover:text-blue-400 transition-colors duration-300">
                   {aboutData.name}
                 </h3>
-                <p className="text-xs text-slate-500 group-hover:text-indigo-400 transition-colors duration-500 mt-1">
-                  Full Stack / Backend Systems
+                <p className="text-xs text-slate-500 group-hover:text-indigo-400 transition-colors duration-300 mt-1">
+                  {portfolioText.about.profileTitle}
                 </p>
-                <div className="mt-4 px-3 py-1 rounded-full border border-slate-800 bg-slate-900/60 text-[10px] text-slate-400 uppercase tracking-widest group-hover:border-blue-500/40 group-hover:text-blue-300 transition-colors duration-500">
-                  Hover to inspect terminal log
-                </div>
               </div>
-            </CanvasRevealEffect>
+            </div>
           </div>
 
           {/* Bottom Row - Expertise Grid */}
           <div className="lg:col-span-12 border-t border-slate-800/80 pt-10">
             <h3 className="text-lg font-bold text-white mb-6 text-left tracking-wide">
-              Core Technical Stack & Tools
+              {portfolioText.about.techStackTitle}
             </h3>
             
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
               {toolsData.map((tool) => (
-                <ToolCard key={tool.name} name={tool.name} />
+                <ToolCard key={tool.name} name={tool.name} icon={tool.icon} fallbackIcon={tool.fallbackIcon} />
               ))}
             </div>
           </div>

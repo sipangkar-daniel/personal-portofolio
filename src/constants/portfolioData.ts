@@ -1,7 +1,8 @@
 export interface Tool {
   name: string;
-  category: "Backend" | "Frontend" | "Database" | "DevOps & Streaming" | "Reporting";
-  iconName: string; // Used for rendering dynamic SVG icons
+  category: "Backend" | "Frontend" | "Database" | "DevOps & Streaming" | "Reporting" | "Mobile";
+  icon: string; // File path or URL to icon image
+  fallbackIcon?: string; // Fallback CDN URL if primary file fails to load
 }
 
 export interface SocialLinks {
@@ -13,6 +14,7 @@ export interface SocialLinks {
 export interface AboutData {
   name: string;
   titles: string[];
+  flipWords: string[];
   description: string;
   socialLinks: SocialLinks;
   resumeUrl: string;
@@ -52,22 +54,83 @@ export interface Testimonial {
 }
 
 export const toolsData: Tool[] = [
-  { name: "Java", category: "Backend", iconName: "Java" },
-  { name: "Springboot", category: "Backend", iconName: "Springboot" },
-  { name: "Javascript", category: "Frontend", iconName: "Javascript" },
-  { name: "React", category: "Frontend", iconName: "React" },
-  { name: "Angular", category: "Frontend", iconName: "Angular" },
-  { name: "OracleDb", category: "Database", iconName: "OracleDb" },
-  { name: "Postgresql", category: "Database", iconName: "Postgresql" },
-  { name: "Redis", category: "Database", iconName: "Redis" },
-  { name: "Kafka", category: "DevOps & Streaming", iconName: "Kafka" },
-  { name: "Jasper Reports", category: "Reporting", iconName: "Jasper Reports" },
-  { name: "Elastic", category: "DevOps & Streaming", iconName: "Elastic" },
+  { 
+    name: "Java", 
+    category: "Backend", 
+    icon: "/icons/icons8-java-color-16.png",
+    fallbackIcon: "https://img.icons8.com/color/96/java-coffee-cup-logo.png"
+  },
+  { 
+    name: "Springboot", 
+    category: "Backend", 
+    icon: "/icons/icons8-spring boot-office80-96.png",
+    fallbackIcon: "https://img.icons8.com/color/96/spring-logo.png"
+  },
+  { 
+    name: "Javascript", 
+    category: "Frontend", 
+    icon: "/icons/icons8-javascript-color-16.png",
+    fallbackIcon: "https://img.icons8.com/color/96/javascript--v1.png"
+  },
+  { 
+    name: "React", 
+    category: "Frontend", 
+    icon: "/icons/icons8-react-external-tal-revivo-shadow-tal-revivo-16.png",
+    fallbackIcon: "https://img.icons8.com/color/96/react-native.png"
+  },
+  { 
+    name: "Angular", 
+    category: "Frontend", 
+    icon: "/icons/icons8-angularjs-color-16.png",
+    fallbackIcon: "https://img.icons8.com/color/96/angularjs.png"
+  },
+  { 
+    name: "Flutter", 
+    category: "Mobile", 
+    icon: "/icons/icons8-flutter-color-16.png",
+    fallbackIcon: "https://img.icons8.com/color/96/flutter.png"
+  },
+  { 
+    name: "OracleDb", 
+    category: "Database", 
+    icon: "/icons/icons8-oracle logo-color-16.png",
+    fallbackIcon: "https://img.icons8.com/color/96/oracle-logo.png"
+  },
+  { 
+    name: "Postgresql", 
+    category: "Database", 
+    icon: "/icons/icons8-postgresql-color-16.png",
+    fallbackIcon: "https://img.icons8.com/color/96/postgreesql.png"
+  },
+  { 
+    name: "Redis", 
+    category: "Database", 
+    icon: "/icons/icons8-redis-external-tal-revivo-color-tal-revivo-16.png",
+    fallbackIcon: "https://img.icons8.com/color/96/redis.png"
+  },
+  { 
+    name: "Kafka", 
+    category: "DevOps & Streaming", 
+    icon: "/icons/icons8-kafka-color-16.png",
+    fallbackIcon: "https://img.icons8.com/nolan/64/apache-kafka.png"
+  },
+  { 
+    name: "Jasper Reports", 
+    category: "Reporting", 
+    icon: "https://iconlogovector.com/uploads/images/2024/10/lg-6719fc5766272-Jaspersoft.webp" 
+  },
+  { 
+    name: "Elastic", 
+    category: "DevOps & Streaming", 
+    icon: "/icons/icons8-elasticsearch-external-tal-revivo-shadow-tal-revivo-16.png",
+    fallbackIcon: "https://img.icons8.com/color/96/elasticsearch.png"
+  },
 ];
 
 export const aboutData: AboutData = {
   name: "Daniel Sipangkar",
   titles: ["Backend Developer", "FrontEnd Developer", "Full-Stack Engineer"],
+  flipWords: ["Daniel Sipangkar", "Backend Developer", "Mobile Developer"],
   description: "Backend Developer with 3 years of experience in building and maintaining robust backend systems using Java Spring Boot.",
   socialLinks: {
     linkedin: "https://www.linkedin.com/in/daniel-sipangkar/",
@@ -180,3 +243,99 @@ export const projectsData: Project[] = [
 ];
 
 export const testimonialsData: Testimonial[] = []; // Empty fallback ready for future testimonials
+
+export const portfolioText = {
+  navbar: {
+    brandName: "Daniel Sipangkar",
+    navLinks: [
+      { label: "About", href: "#about" },
+      { label: "Experience", href: "#experience" },
+      { label: "Project", href: "#projects" },
+      { label: "Testimonials", href: "#testimonials" },
+      { label: "Contact Me", href: "#contact" },
+    ],
+    ctaText: "Let's Talk",
+    drawerTitle: "Navigation",
+    linkedinBtn: "LinkedIn Contact",
+  },
+  about: {
+    welcomeTag: "Welcome to My Portfolio",
+    greetingPrefix: "Hi, I'm",
+    descriptionSuffix: "Specialized in creating microservices pipelines, secure database querying, and data sync engines, whilst implementing responsive user-facing panels to deliver a complete, highly optimized stack.",
+    resumeBtn: "My Resume",
+    onTouchBtn: "On Touch",
+    profileTitle: "Full Stack / Backend Systems",
+    techStackTitle: "Core Technical Stack & Tools",
+    resumeFilename: "Daniel_Sipangkar_Resume.txt",
+    resumeHeaderText: "DANIEL SIPANGKAR - RESUME",
+    resumeHeaderLine: "========================================",
+    resumeRoleLabel: "Role: Backend & Frontend Developer (Full-Stack)",
+    resumeEmailLabel: "Email:",
+    resumeLinkedInLabel: "LinkedIn:",
+    resumeWhatsAppLabel: "WhatsApp:",
+    resumeSkillsLabel: "TECHNICAL SKILLS:",
+    resumeSkillsList: [
+      "- Languages: Java, JavaScript, TypeScript",
+      "- Frameworks: Spring Boot, React, Angular, Express",
+      "- Databases: PostgreSQL, OracleDB, Redis",
+      "- Streaming & Search: Apache Kafka, Elasticsearch (Elastic)",
+      "- Reporting: Jasper Reports"
+    ],
+    resumeSummaryLabel: "EXPERIENCE SUMMARY:",
+    resumeSummaryText: "3+ years of experience engineering high-performance API structures, microservices architectures, data caching strategies, and robust client portals.",
+  },
+  experience: {
+    journeyTag: "Career Journey",
+    title: "Professional Experience",
+    description: "A track record of engineering scalable backend microservices, streamlining streaming event networks, and optimizing SQL and Redis database caches.",
+    moreBadge: "more",
+    viewDetailsBtn: "View Details",
+    modalScopeTitle: "Detailed Scope & Contributions",
+    modalTechTitle: "Technologies Implemented",
+    modalScreenshotsTitle: "System Architecture / Screenshot Placeholders",
+    placeholder1Title: "Microservice Pipeline Mesh",
+    placeholder1Subtitle: "Docker Compose Stack Setup",
+    placeholder2Title: "Database Index Query Optimizer",
+    placeholder2Subtitle: "OracleDB Explain Plan Mockup",
+  },
+  projects: {
+    title: "Featured Projects",
+    description: "Explore a curated collection of high-performance microservices, API engines, caching layers, and responsive full-stack solutions built using Java Spring Boot and React.",
+    modalTitle: "Project Architecture & Purpose",
+    modalStackTitle: "Core Stack Integration",
+    modalPrivateRepo: "Private Repository",
+    modalLivePreview: "Live Preview",
+    modalSourceCode: "Source Code",
+    modalSourceGated: "Source Gated",
+    modalPrivateWarning: "⚠️ This system processes proprietary financial transaction payloads and compliance metrics. Live hosting and public sources are restricted.",
+  },
+  testimonials: {
+    feedbackTag: "Client Feedback",
+    title: "Recommendations & Testimonials",
+    description: "Read recommendations and feedback from peers, tech leads, and product owners who partnered on backend microservices migrations.",
+  },
+  contact: {
+    connectTag: "Let's Connect",
+    title: "Get In Touch",
+    description: "Interested in adding a high-throughput Java Spring Boot backend, a robust microservice architecture, or building full-stack dashboards? Let's align! Fill in the console stream or reach out via direct link.",
+    emailDispatchLabel: "Email Dispatch",
+    telephonyLabel: "Instant Telephony",
+    telephonyValue: "+62 822 7225 3799",
+    formTitle: "API Messaging Form",
+    nameLabel: "Your Name",
+    namePlaceholder: "John Doe",
+    emailLabel: "Email Address",
+    emailPlaceholder: "john@example.com",
+    messageLabel: "Payload Message",
+    messagePlaceholder: "Describe your project, system architecture requirements, or role openings...",
+    errorEmptyInputs: "Please fill in all inputs before transmission.",
+    successMsg: "Success: Message logged. Synchronization completes shortly. Thank you!",
+    transmittingText: "Transmitting Data...",
+    sendBtn: "Send Message",
+  },
+  footer: {
+    systemCore: "SYSTEM CORE: ACTIVE | RESPONDING 200 OK",
+    craftedWith: "Crafted with",
+    usingText: "using React & Spring Boot.",
+  }
+};

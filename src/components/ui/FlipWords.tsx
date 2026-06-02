@@ -33,7 +33,7 @@ export const FlipWords = ({
   }, [isAnimating, duration, startAnimation]);
 
   return (
-    <span className="relative inline-block min-w-[200px]">
+    <span className="relative inline-block min-w-[200px] py-1.5 overflow-visible">
       <AnimatePresence
         onExitComplete={() => {
           setIsAnimating(false);
@@ -63,7 +63,7 @@ export const FlipWords = ({
             damping: 14,
           }}
           className={cn(
-            "inline-block font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500",
+            "inline-block font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 py-1.5",
             className
           )}
         >

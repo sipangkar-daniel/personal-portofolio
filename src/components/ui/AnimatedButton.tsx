@@ -63,8 +63,13 @@ export const AnimatedButton: React.FC<AnimatedButtonProps> = ({
               repeat: Infinity,
               ease: "linear",
             }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] h-[200%] bg-[conic-gradient(from_0deg,#3b82f6,#8b5cf6,#10b981,#3b82f6)]"
-            style={{ originX: "50%", originY: "50%" }}
+            className="absolute w-[250%] h-[250%] bg-[conic-gradient(from_0deg,#3b82f6,#8b5cf6,#10b981,#3b82f6)]"
+            style={{
+              left: "50%",
+              top: "50%",
+              x: "-50%",
+              y: "-50%",
+            }}
           />
         </span>
         

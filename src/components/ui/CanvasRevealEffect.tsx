@@ -53,7 +53,7 @@ export const CanvasRevealEffect: React.FC<CanvasRevealEffectProps> = ({
         this.targetY = y;
         this.size = Math.random() * 2 + 1;
         this.color = `rgba(${59 + Math.random() * 50}, ${130 + Math.random() * 50}, 246, ${Math.random() * 0.4 + 0.3})`;
-        this.speed = Math.random() * 0.5 + 0.2;
+        this.speed = Math.random() * 0.15 + 0.05;
         this.angle = Math.random() * Math.PI * 2;
       }
 
@@ -71,9 +71,9 @@ export const CanvasRevealEffect: React.FC<CanvasRevealEffectProps> = ({
           const dx = mouseX - this.x;
           const dy = mouseY - this.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 100) {
-            this.x += dx * 0.05;
-            this.y += dy * 0.05;
+          if (dist < 80) {
+            this.x += dx * 0.01;
+            this.y += dy * 0.01;
           }
         }
       }
@@ -87,7 +87,7 @@ export const CanvasRevealEffect: React.FC<CanvasRevealEffectProps> = ({
     }
 
     const particles: Particle[] = [];
-    const particleCount = 45;
+    const particleCount = 20;
 
     // Initialize particles randomly
     for (let i = 0; i < particleCount; i++) {
@@ -107,12 +107,12 @@ export const CanvasRevealEffect: React.FC<CanvasRevealEffectProps> = ({
           const dy = particles[i].y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 80) {
+          if (dist < 65) {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
             // Dynamic opacity based on distance
-            const alpha = (1 - dist / 80) * 0.15;
+            const alpha = (1 - dist / 65) * 0.08;
             ctx.strokeStyle = `rgba(99, 102, 241, ${alpha})`;
             ctx.lineWidth = 0.8;
             ctx.stroke();
@@ -148,7 +148,7 @@ export const CanvasRevealEffect: React.FC<CanvasRevealEffectProps> = ({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className={cn(
-        "relative overflow-hidden w-full h-full bg-slate-950 rounded-2xl border border-slate-800 flex items-center justify-center cursor-pointer group",
+        "relative overflow-hidden w-full h-full bg-slate-950 rounded-2xl border border-slate-800 flex items-center justify-center group",
         className
       )}
     >
