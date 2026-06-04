@@ -74,3 +74,12 @@
     animation-range: entry 10% cover 40%;
   }
 }
+
+/* Hide scrollbars for clean carousels */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

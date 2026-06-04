@@ -12,6 +12,7 @@ import profileImage from "../assets/image/profile_image.png";
 
 export const About: React.FC = () => {
   const [showSocials, setShowSocials] = useState(false);
+  const [showAllTools, setShowAllTools] = useState(false);
 
   // Trigger dynamic text file download for Resume
   const triggerResumeDownload = () => {
@@ -48,7 +49,7 @@ ${portfolioText.about.resumeSummaryText}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
           
           {/* Top Left Row - Text content & Buttons */}
-          <div className="lg:col-span-7 flex flex-col justify-center space-y-6 text-left">
+          <div className="lg:col-span-7 flex flex-col justify-center space-y-6 text-left order-2 lg:order-1">
             <span className="text-blue-500 font-bold uppercase tracking-wider text-xs md:text-sm">
               {portfolioText.about.welcomeTag}
             </span>
@@ -143,7 +144,7 @@ ${portfolioText.about.resumeSummaryText}
           </div>
 
           {/* Top Right Row - Clean Profile Picture Card */}
-          <div className="lg:col-span-5 h-[320px] md:h-[400px] w-full flex items-center justify-center z-20">
+          <div className="lg:col-span-5 h-[320px] md:h-[400px] w-full flex items-center justify-center z-20 order-1 lg:order-2">
             <ShineBorder
               className="w-full h-full bg-slate-900/60 rounded-2xl overflow-hidden group shadow-xl border border-slate-800/80"
               borderRadius={16}
@@ -182,16 +183,32 @@ ${portfolioText.about.resumeSummaryText}
           </div>
 
           {/* Bottom Row - Expertise Grid */}
-          <div className="lg:col-span-12 border-t border-slate-800/80 pt-10">
+          <div className="lg:col-span-12 border-t border-slate-800/80 pt-10 order-3 lg:order-3">
             <h3 className="text-lg font-bold text-white mb-6 text-left tracking-wide">
               {portfolioText.about.techStackTitle}
             </h3>
             
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-              {techStack.map((tool) => (
-                <ToolCard key={tool.name} name={tool.name} icon={tool.icon} fallbackIcon={tool.fallbackIcon} />
-              ))}
+              {techStack.map((tool, index) => {
+                const isHiddenOnMobile = index >= 6 && !showAllTools;
+                return (
+                  <div key={tool.name} className={isHiddenOnMobile ? "hidden md:block" : "block"}>
+                    <ToolCard name={tool.name} icon={tool.icon} fallbackIcon={tool.fallbackIcon} />
+                  </div>
+                );
+              })}
             </div>
+            
+            {techStack.length > 6 && (
+              <div className="flex justify-center mt-6 md:hidden">
+                <button
+                  onClick={() => setShowAllTools(!showAllTools)}
+                  className="text-xs font-bold text-blue-500 hover:text-blue-400 flex items-center gap-1 bg-slate-900 border border-slate-800 px-4 py-2 rounded-lg transition-colors"
+                >
+                  {showAllTools ? "Show Less" : `Show More (${techStack.length - 6} more)`}
+                </button>
+              </div>
+            )}
           </div>
           
         </div>

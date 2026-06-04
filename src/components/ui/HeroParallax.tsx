@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import React, { useRef, useState, useEffect } from "react";
+import { motion, useScroll, useTransform, useSpring, type MotionValue } from "framer-motion";
 import type { Project } from "../../constants/portfolioData";
 
 interface HeroParallaxProps {
@@ -15,6 +15,17 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({
   title,
   description,
 }) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   // Split projects into two rows of three cards each
   const firstRow = projects.slice(0, 3);
   const secondRow = projects.slice(3, 6);
@@ -25,15 +36,15 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({
     offset: ["start start", "end start"],
   });
 
-  const springConfig = { stiffness: 300, damping: 30, bounce: 0 };
+  const springConfig = { stiffness: 100, damping: 30, bounce: 0 };
 
   // Horizontal translation effects
   const translateX = useSpring(
-    useTransform(scrollYProgress, [0, 1], [-80, 80]),
+    useTransform(scrollYProgress, [0, 1], [-250, 250]),
     springConfig
   );
   const translateXReverse = useSpring(
-    useTransform(scrollYProgress, [0, 1], [80, -80]),
+    useTransform(scrollYProgress, [0, 1], [250, -250]),
     springConfig
   );
 
@@ -64,19 +75,20 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({
       
       <motion.div
         style={{
-          rotateX,
-          rotateZ,
-          translateY,
-          opacity,
+          rotateX: isMobile ? 0 : rotateX,
+          rotateZ: isMobile ? 0 : rotateZ,
+          translateY: isMobile ? 0 : translateY,
+          opacity: isMobile ? 1 : opacity,
         }}
-        className="flex flex-col gap-10 md:gap-16 items-center justify-center"
+        className="flex flex-col gap-6 md:gap-16 items-center justify-center w-full"
       >
         {/* Row 1 */}
-        <motion.div className="flex flex-row-reverse space-x-reverse space-x-6 md:space-x-12 overflow-hidden py-1 justify-center w-full">
+        <motion.div className="flex flex-row md:flex-row-reverse space-x-6 md:space-x-reverse md:space-x-12 overflow-x-auto md:overflow-hidden py-4 w-full snap-x snap-mandatory scrollbar-none px-6 md:px-0 md:justify-center">
           {firstRow.map((project) => (
             <ProjectCard
               project={project}
               translate={translateX}
+              isMobile={isMobile}
               key={project.id}
               onClick={() => onProjectClick(project)}
             />
@@ -84,11 +96,12 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({
         </motion.div>
 
         {/* Row 2 */}
-        <motion.div className="flex flex-row space-x-6 md:space-x-12 overflow-hidden py-1 justify-center w-full">
+        <motion.div className="flex flex-row space-x-6 md:space-x-12 overflow-x-auto md:overflow-hidden py-4 w-full snap-x snap-mandatory scrollbar-none px-6 md:px-0 md:justify-center">
           {secondRow.map((project) => (
             <ProjectCard
               project={project}
               translate={translateXReverse}
+              isMobile={isMobile}
               key={project.id}
               onClick={() => onProjectClick(project)}
             />
@@ -114,25 +127,27 @@ const Header = ({ title, description }: { title?: string; description?: string }
 
 interface ProjectCardProps {
   project: Project;
-  translate: import("framer-motion").MotionValue<number>;
+  translate: MotionValue<number>;
   onClick: () => void;
+  isMobile: boolean;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
   project,
   translate,
   onClick,
+  isMobile,
 }) => {
   return (
     <motion.div
       style={{
-        x: translate,
+        x: isMobile ? 0 : translate,
       }}
-      whileHover={{
+      whileHover={isMobile ? {} : {
         y: -10,
       }}
       onClick={onClick}
-      className="group/product h-64 w-[280px] md:h-80 md:w-[450px] relative flex-shrink-0 rounded-2xl overflow-hidden cursor-pointer shadow-lg border border-slate-800 bg-slate-900 transition-all duration-300"
+      className="group/product h-64 w-[280px] md:h-80 md:w-[450px] relative flex-shrink-0 rounded-2xl overflow-hidden cursor-pointer shadow-lg border border-slate-800 bg-slate-900 transition-all duration-300 snap-center"
     >
       <div className="absolute inset-0">
         <img
