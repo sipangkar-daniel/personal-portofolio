@@ -54,74 +54,74 @@ export interface Testimonial {
 }
 
 export const techStack: Tool[] = [
-  { 
-    name: "Java", 
-    category: "Backend", 
+  {
+    name: "Java",
+    category: "Backend",
     icon: "/icons/icons8-java-color-16.png",
     fallbackIcon: "https://img.icons8.com/color/96/java-coffee-cup-logo.png"
   },
-  { 
-    name: "Springboot", 
-    category: "Backend", 
+  {
+    name: "Springboot",
+    category: "Backend",
     icon: "/icons/icons8-spring boot-office80-96.png",
     fallbackIcon: "https://img.icons8.com/color/96/spring-logo.png"
   },
-  { 
-    name: "Javascript", 
-    category: "Frontend", 
+  {
+    name: "Javascript",
+    category: "Frontend",
     icon: "/icons/icons8-javascript-color-16.png",
     fallbackIcon: "https://img.icons8.com/color/96/javascript--v1.png"
   },
-  { 
-    name: "React", 
-    category: "Frontend", 
+  {
+    name: "React",
+    category: "Frontend",
     icon: "/icons/icons8-react-external-tal-revivo-shadow-tal-revivo-16.png",
     fallbackIcon: "https://img.icons8.com/color/96/react-native.png"
   },
-  { 
-    name: "Angular", 
-    category: "Frontend", 
+  {
+    name: "Angular",
+    category: "Frontend",
     icon: "/icons/icons8-angularjs-color-16.png",
     fallbackIcon: "https://img.icons8.com/color/96/angularjs.png"
   },
-  { 
-    name: "Flutter", 
-    category: "Mobile", 
+  {
+    name: "Flutter",
+    category: "Mobile",
     icon: "/icons/icons8-flutter-color-16.png",
     fallbackIcon: "https://img.icons8.com/color/96/flutter.png"
   },
-  { 
-    name: "OracleDb", 
-    category: "Database", 
+  {
+    name: "OracleDb",
+    category: "Database",
     icon: "/icons/icons8-oracle logo-color-16.png",
     fallbackIcon: "https://img.icons8.com/color/96/oracle-logo.png"
   },
-  { 
-    name: "Postgresql", 
-    category: "Database", 
+  {
+    name: "Postgresql",
+    category: "Database",
     icon: "/icons/icons8-postgresql-color-16.png",
     fallbackIcon: "https://img.icons8.com/color/96/postgreesql.png"
   },
-  { 
-    name: "Redis", 
-    category: "Database", 
+  {
+    name: "Redis",
+    category: "Database",
     icon: "/icons/icons8-redis-external-tal-revivo-color-tal-revivo-16.png",
     fallbackIcon: "https://img.icons8.com/color/96/redis.png"
   },
-  { 
-    name: "Kafka", 
-    category: "DevOps & Streaming", 
+  {
+    name: "Kafka",
+    category: "DevOps & Streaming",
     icon: "/icons/icons8-kafka-color-16.png",
     fallbackIcon: "https://img.icons8.com/nolan/64/apache-kafka.png"
   },
-  { 
-    name: "Jasper Reports", 
-    category: "Reporting", 
-    icon: "https://iconlogovector.com/uploads/images/2024/10/lg-6719fc5766272-Jaspersoft.webp" 
+  {
+    name: "Jasper Reports",
+    category: "Reporting",
+    icon: "https://iconlogovector.com/uploads/images/2024/10/lg-6719fc5766272-Jaspersoft.webp"
   },
-  { 
-    name: "Elastic", 
-    category: "DevOps & Streaming", 
+  {
+    name: "Elastic",
+    category: "DevOps & Streaming",
     icon: "/icons/icons8-elasticsearch-external-tal-revivo-shadow-tal-revivo-16.png",
     fallbackIcon: "https://img.icons8.com/color/96/elasticsearch.png"
   },

@@ -187,27 +187,40 @@ ${portfolioText.about.resumeSummaryText}
             <h3 className="text-lg font-bold text-white mb-6 text-left tracking-wide">
               {portfolioText.about.techStackTitle}
             </h3>
-            
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-              {techStack.map((tool, index) => {
-                const isHiddenOnMobile = index >= 6 && !showAllTools;
-                return (
-                  <div key={tool.name} className={isHiddenOnMobile ? "hidden md:block" : "block"}>
-                    <ToolCard name={tool.name} icon={tool.icon} fallbackIcon={tool.fallbackIcon} />
-                  </div>
-                );
-              })}
-            </div>
-            
-            {techStack.length > 6 && (
-              <div className="flex justify-center mt-6 md:hidden">
-                <button
-                  onClick={() => setShowAllTools(!showAllTools)}
-                  className="text-xs font-bold text-blue-500 hover:text-blue-400 flex items-center gap-1 bg-slate-900 border border-slate-800 px-4 py-2 rounded-lg transition-colors"
-                >
-                  {showAllTools ? "Show Less" : `Show More (${techStack.length - 6} more)`}
-                </button>
+                       {techStack.length === 0 ? (
+              <div className="flex flex-col items-center justify-center p-8 border border-dashed border-slate-800/80 rounded-xl bg-slate-900/10 text-center max-w-md mx-auto mt-4">
+                <div className="w-12 h-12 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 text-lg mb-3 shadow-sm">
+                  🛠️
+                </div>
+                <h4 className="text-white font-semibold">No Tools or Technologies Yet</h4>
+                <p className="text-slate-400 text-xs mt-2 leading-relaxed">
+                  Tech stack items are currently being curated. A complete list of languages, tools, and frameworks will appear here soon.
+                </p>
               </div>
+            ) : (
+              <>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                  {techStack.map((tool, index) => {
+                    const isHiddenOnMobile = index >= 6 && !showAllTools;
+                    return (
+                      <div key={tool.name} className={isHiddenOnMobile ? "hidden md:block" : "block"}>
+                        <ToolCard name={tool.name} icon={tool.icon} fallbackIcon={tool.fallbackIcon} />
+                      </div>
+                    );
+                  })}
+                </div>
+                
+                {techStack.length > 6 && (
+                  <div className="flex justify-center mt-6 md:hidden">
+                    <button
+                      onClick={() => setShowAllTools(!showAllTools)}
+                      className="text-xs font-bold text-blue-500 hover:text-blue-400 flex items-center gap-1 bg-slate-900 border border-slate-800 px-4 py-2 rounded-lg transition-colors"
+                    >
+                      {showAllTools ? "Show Less" : `Show More (${techStack.length - 6} more)`}
+                    </button>
+                  </div>
+                )}
+              </>
             )}
           </div>
           

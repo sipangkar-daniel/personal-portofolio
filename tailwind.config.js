@@ -40,7 +40,7 @@ export default {
         }
       },
       animation: {
-        scroll: "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
+        scroll: "scroll var(--animation-duration, 40s) var(--animation-direction, normal) linear infinite",
         "fade-in": "fadeIn 0.5s ease-out forwards",
         "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         shine: "shine var(--duration) infinite linear",
