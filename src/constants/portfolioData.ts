@@ -129,8 +129,8 @@ export const techStack: Tool[] = [
 
 export const personalDescription: AboutData = {
   name: "Daniel Sipangkar",
-  titles: ["Daniel Sipangkar", "Backend Developer", "Mobile Developer"],
-  flipWords: ["Daniel Sipangkar", "Backend Developer", "Mobile Developer"],
+  titles: ["Daniel Sipangkar", "Backend Developer", "Fullstack Vibe Coder"],
+  flipWords: ["Daniel Sipangkar", "Backend Developer", "Fullstack Vibe Coder"],
   description: "Backend Developer with 3 years of experience in building and maintaining robust backend systems using Java Spring Boot.",
   socialLinks: {
     linkedin: "https://www.linkedin.com/in/daniel-sipangkar/",

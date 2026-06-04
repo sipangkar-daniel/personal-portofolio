@@ -43,6 +43,8 @@ export default {
         scroll: "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
         "fade-in": "fadeIn 0.5s ease-out forwards",
         "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        shine: "shine var(--duration) infinite linear",
+        ripple: "ripple var(--duration,2s) ease calc(var(--i, 0)*.2s) infinite",
       },
       keyframes: {
         scroll: {
@@ -53,6 +55,15 @@ export default {
         fadeIn: {
           "0%": { opacity: "0", transform: "translateY(10px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        shine: {
+          "0%": { "background-position": "0% 0%" },
+          "50%": { "background-position": "100% 100%" },
+          to: { "background-position": "0% 0%" },
+        },
+        ripple: {
+          "0%, 100%": { transform: "translate(-50%, -50%) scale(1)" },
+          "50%": { transform: "translate(-50%, -50%) scale(0.9)" },
         },
       },
     },

@@ -6,6 +6,9 @@ import { FlipWords } from "../components/ui/FlipWords";
 import { ToolCard } from "../components/ui/ToolCard";
 import { AnimatedButton } from "../components/ui/AnimatedButton";
 import { personalDescription, techStack, portfolioText } from "../constants/portfolioData";
+import { Ripple } from "../components/ui/Ripple";
+import { ShineBorder } from "../components/ui/ShineBorder";
+import profileImage from "../assets/image/profile_image.png";
 
 export const About: React.FC = () => {
   const [showSocials, setShowSocials] = useState(false);
@@ -51,7 +54,7 @@ ${portfolioText.about.resumeSummaryText}
             </span>
             
             <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight min-h-[110px] sm:min-h-[85px] md:min-h-[60px]">
-              {portfolioText.about.greetingPrefix} <br className="md:hidden" />
+              {portfolioText.about.greetingPrefix} <br className="-bottom-0 md:text-lg" />
               <FlipWords words={personalDescription.flipWords} duration={2800} />
             </h1>
 
@@ -141,26 +144,41 @@ ${portfolioText.about.resumeSummaryText}
 
           {/* Top Right Row - Clean Profile Picture Card */}
           <div className="lg:col-span-5 h-[320px] md:h-[400px] w-full flex items-center justify-center z-20">
-            <div className="relative overflow-hidden w-full h-full bg-slate-900/60 rounded-2xl border border-slate-800 flex items-center justify-center group shadow-xl">
-              <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 via-transparent to-purple-500/5 opacity-60 pointer-events-none" />
-              <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
-              
-              <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center select-none z-10 relative">
-                {/* Default Placeholder Avatar */}
-                <div className="w-28 h-28 md:w-36 md:h-36 rounded-full border-2 border-slate-700 bg-slate-950 flex items-center justify-center shadow-lg group-hover:scale-105 group-hover:border-blue-500 transition-all duration-500 overflow-hidden">
-                  <svg className="w-16 h-16 text-slate-400 group-hover:text-blue-400 transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
-                </div>
+            <ShineBorder
+              className="w-full h-full bg-slate-900/60 rounded-2xl overflow-hidden group shadow-xl border border-slate-800/80"
+              borderRadius={16}
+              borderWidth={1.5}
+              duration={10}
+              shineColor={["#3B82F6", "#8B5CF6", "#10B981"]}
+            >
+              <div className="relative overflow-hidden w-full h-full flex items-center justify-center">
+                {/* Ripple Animation background */}
+                <Ripple className="opacity-0 group-hover:opacity-30 transition-opacity duration-700 pointer-events-none" />
                 
-                <h3 className="text-white font-bold text-lg mt-4 group-hover:text-blue-400 transition-colors duration-300">
-                  {personalDescription.name}
-                </h3>
-                <p className="text-xs text-slate-500 group-hover:text-indigo-400 transition-colors duration-300 mt-1">
-                  {portfolioText.about.profileTitle}
-                </p>
+                <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 via-transparent to-purple-500/5 opacity-60 pointer-events-none" />
+                <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
+                
+                {/* User Profile Photo (Full Card Cutout) */}
+                <img
+                  src={profileImage}
+                  alt={personalDescription.name}
+                  className="absolute bottom-0 inset-x-0 h-[80%] md:h-[100%] w-auto mx-auto object-contain object-bottom select-none transition-transform duration-500 group-hover:scale-105 z-10 scroll-reveal"
+                />
+
+                {/* Bottom Shadow Gradient to mask image cut off and improve text readability */}
+                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent z-20 pointer-events-none" />
+
+                {/* Name Tag (Absolute Overlay at the bottom) */}
+                {/*<div className="absolute bottom-6 left-6 right-6 z-30 text-left">*/}
+                {/*  <h3 className="text-white font-bold text-xl group-hover:text-blue-400 transition-colors duration-300">*/}
+                {/*    {personalDescription.name}*/}
+                {/*  </h3>*/}
+                {/*  <p className="text-xs text-slate-400 group-hover:text-indigo-400 transition-colors duration-300 mt-1 font-semibold tracking-wide">*/}
+                {/*    {portfolioText.about.profileTitle}*/}
+                {/*  </p>*/}
+                {/*</div>*/}
               </div>
-            </div>
+            </ShineBorder>
           </div>
 
           {/* Bottom Row - Expertise Grid */}
