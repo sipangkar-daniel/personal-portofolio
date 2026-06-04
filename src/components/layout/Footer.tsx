@@ -1,6 +1,6 @@
 import React from "react";
 import { Terminal, Heart } from "lucide-react";
-import { aboutData, portfolioText } from "../../constants/portfolioData";
+import { personalDescription, portfolioText } from "../../constants/portfolioData";
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -19,7 +19,7 @@ export const Footer: React.FC = () => {
 
         {/* Copyright Center */}
         <div className="flex items-center gap-1.5 text-xs text-slate-500">
-          <span>&copy; {currentYear} {aboutData.name}. {portfolioText.footer.craftedWith}</span>
+          <span>&copy; {currentYear} {personalDescription.name}. {portfolioText.footer.craftedWith}</span>
           <Heart className="w-3 h-3 text-red-500 fill-current animate-pulse" />
           <span>{portfolioText.footer.usingText}</span>
         </div>
@@ -27,7 +27,7 @@ export const Footer: React.FC = () => {
         {/* Social Anchors Right */}
         <div className="flex items-center gap-5 text-xs font-semibold text-slate-400">
           <a
-            href={aboutData.socialLinks.linkedin}
+            href={personalDescription.socialLinks.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-blue-400 transition-colors"
@@ -35,13 +35,13 @@ export const Footer: React.FC = () => {
             LinkedIn
           </a>
           <a
-            href={`mailto:${aboutData.socialLinks.email}`}
+            href={`mailto:${personalDescription.socialLinks.email}`}
             className="hover:text-red-400 transition-colors"
           >
             Email
           </a>
           <a
-            href={aboutData.socialLinks.whatsapp}
+            href={personalDescription.socialLinks.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-emerald-400 transition-colors"

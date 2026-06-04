@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Send, CheckCircle, Mail, MessageSquare } from "lucide-react";
 import { AnimatedButton } from "../components/ui/AnimatedButton";
-import { aboutData, portfolioText } from "../constants/portfolioData";
+import { personalDescription, portfolioText } from "../constants/portfolioData";
 
 export const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -59,7 +59,7 @@ export const ContactSection: React.FC = () => {
           <div className="space-y-4 pt-4">
             {/* Direct Email Link */}
             <a
-              href={`mailto:${aboutData.socialLinks.email}`}
+              href={`mailto:${personalDescription.socialLinks.email}`}
               className="flex items-center gap-4 group p-3 rounded-xl border border-slate-800/40 bg-slate-900/30 hover:border-blue-500/40 hover:bg-slate-900/60 transition-all duration-300"
             >
               <div className="w-10 h-10 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400 group-hover:bg-red-500 group-hover:text-white transition-all duration-300">
@@ -68,14 +68,14 @@ export const ContactSection: React.FC = () => {
               <div>
                 <div className="text-[10px] text-slate-500 uppercase tracking-widest font-semibold">{portfolioText.contact.emailDispatchLabel}</div>
                 <div className="text-sm font-semibold text-slate-200 group-hover:text-blue-400 transition-colors">
-                  {aboutData.socialLinks.email}
+                  {personalDescription.socialLinks.email}
                 </div>
               </div>
             </a>
 
             {/* Direct WhatsApp Link */}
             <a
-              href={aboutData.socialLinks.whatsapp}
+              href={personalDescription.socialLinks.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-4 group p-3 rounded-xl border border-slate-800/40 bg-slate-900/30 hover:border-emerald-500/40 hover:bg-slate-900/60 transition-all duration-300"

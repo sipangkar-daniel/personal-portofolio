@@ -53,7 +53,7 @@ export interface Testimonial {
   avatar: string;
 }
 
-export const toolsData: Tool[] = [
+export const techStack: Tool[] = [
   { 
     name: "Java", 
     category: "Backend", 
@@ -127,9 +127,9 @@ export const toolsData: Tool[] = [
   },
 ];
 
-export const aboutData: AboutData = {
+export const personalDescription: AboutData = {
   name: "Daniel Sipangkar",
-  titles: ["Backend Developer", "FrontEnd Developer", "Full-Stack Engineer"],
+  titles: ["Daniel Sipangkar", "Backend Developer", "Mobile Developer"],
   flipWords: ["Daniel Sipangkar", "Backend Developer", "Mobile Developer"],
   description: "Backend Developer with 3 years of experience in building and maintaining robust backend systems using Java Spring Boot.",
   socialLinks: {
@@ -137,7 +137,7 @@ export const aboutData: AboutData = {
     email: "daniel222mu@gmail.com",
     whatsapp: "https://wa.me/6282272253799",
   },
-  resumeUrl: "#", // Dummy file download endpoint
+  resumeUrl: "#",
 };
 
 export const experiencesData: Experience[] = [

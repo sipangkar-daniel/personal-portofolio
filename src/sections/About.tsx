@@ -5,7 +5,7 @@ import { BackgroundRipple } from "../components/ui/BackgroundRipple";
 import { FlipWords } from "../components/ui/FlipWords";
 import { ToolCard } from "../components/ui/ToolCard";
 import { AnimatedButton } from "../components/ui/AnimatedButton";
-import { aboutData, toolsData, portfolioText } from "../constants/portfolioData";
+import { personalDescription, techStack, portfolioText } from "../constants/portfolioData";
 
 export const About: React.FC = () => {
   const [showSocials, setShowSocials] = useState(false);
@@ -17,9 +17,9 @@ ${portfolioText.about.resumeHeaderLine}
 ${portfolioText.about.resumeHeaderText}
 ${portfolioText.about.resumeHeaderLine}
 ${portfolioText.about.resumeRoleLabel}
-${portfolioText.about.resumeEmailLabel} ${aboutData.socialLinks.email}
-${portfolioText.about.resumeLinkedInLabel} ${aboutData.socialLinks.linkedin}
-${portfolioText.about.resumeWhatsAppLabel} ${aboutData.socialLinks.whatsapp}
+${portfolioText.about.resumeEmailLabel} ${personalDescription.socialLinks.email}
+${portfolioText.about.resumeLinkedInLabel} ${personalDescription.socialLinks.linkedin}
+${portfolioText.about.resumeWhatsAppLabel} ${personalDescription.socialLinks.whatsapp}
 
 ${portfolioText.about.resumeSkillsLabel}
 ${portfolioText.about.resumeSkillsList.join("\n")}
@@ -52,7 +52,7 @@ ${portfolioText.about.resumeSummaryText}
             
             <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight min-h-[110px] sm:min-h-[85px] md:min-h-[60px]">
               {portfolioText.about.greetingPrefix} <br className="md:hidden" />
-              <FlipWords words={aboutData.flipWords} duration={2800} />
+              <FlipWords words={personalDescription.flipWords} duration={2800} />
             </h1>
 
             {/* Gently fading description */}
@@ -62,7 +62,7 @@ ${portfolioText.about.resumeSummaryText}
               transition={{ delay: 0.2, duration: 0.6 }}
               className="text-slate-400 text-sm md:text-base leading-relaxed"
             >
-              {aboutData.description} {portfolioText.about.descriptionSuffix}
+              {personalDescription.description} {portfolioText.about.descriptionSuffix}
             </motion.p>
 
             {/* Actions Grid */}
@@ -102,7 +102,7 @@ ${portfolioText.about.resumeSummaryText}
                     >
                       {/* LinkedIn */}
                       <a
-                        href={aboutData.socialLinks.linkedin}
+                        href={personalDescription.socialLinks.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="p-2 rounded-md hover:bg-slate-800 text-slate-400 hover:text-blue-400 transition-colors"
@@ -115,7 +115,7 @@ ${portfolioText.about.resumeSummaryText}
                       
                       {/* Email */}
                       <a
-                        href={`mailto:${aboutData.socialLinks.email}`}
+                        href={`mailto:${personalDescription.socialLinks.email}`}
                         className="p-2 rounded-md hover:bg-slate-800 text-slate-400 hover:text-red-400 transition-colors"
                         title="Email"
                       >
@@ -124,7 +124,7 @@ ${portfolioText.about.resumeSummaryText}
 
                       {/* WhatsApp */}
                       <a
-                        href={aboutData.socialLinks.whatsapp}
+                        href={personalDescription.socialLinks.whatsapp}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="p-2 rounded-md hover:bg-slate-800 text-slate-400 hover:text-emerald-400 transition-colors"
@@ -154,7 +154,7 @@ ${portfolioText.about.resumeSummaryText}
                 </div>
                 
                 <h3 className="text-white font-bold text-lg mt-4 group-hover:text-blue-400 transition-colors duration-300">
-                  {aboutData.name}
+                  {personalDescription.name}
                 </h3>
                 <p className="text-xs text-slate-500 group-hover:text-indigo-400 transition-colors duration-300 mt-1">
                   {portfolioText.about.profileTitle}
@@ -170,7 +170,7 @@ ${portfolioText.about.resumeSummaryText}
             </h3>
             
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-              {toolsData.map((tool) => (
+              {techStack.map((tool) => (
                 <ToolCard key={tool.name} name={tool.name} icon={tool.icon} fallbackIcon={tool.fallbackIcon} />
               ))}
             </div>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Menu, X, Terminal } from "lucide-react";
 import { useScrollResize } from "../../hooks/useScrollResize";
 import { cn } from "../../utils/cn";
-import { aboutData, portfolioText } from "../../constants/portfolioData";
+import { personalDescription, portfolioText } from "../../constants/portfolioData";
 
 export const Navbar: React.FC = () => {
   const isScrolled = useScrollResize(60);
@@ -93,7 +93,7 @@ export const Navbar: React.FC = () => {
 
         <div className="mt-auto border-t border-slate-800/80 pt-6">
           <a
-            href={aboutData.socialLinks.linkedin}
+            href={personalDescription.socialLinks.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             className="block text-center text-xs font-semibold text-white bg-blue-600 py-2.5 rounded-lg hover:bg-blue-500 transition-all duration-200"
