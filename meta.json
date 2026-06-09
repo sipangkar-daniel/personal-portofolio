@@ -1,4 +1,9 @@
 {
-  "imageUrls": ["https://github.com/user-attachments/assets/285d7689-84d5-40fd-990a-5724c373ca40"],
+  "title": "Personal Website Portofolio",
+  "shortDescription": "A personal portfolio website showcasing my professional experience, projects, and the technologies and tools I use as a Software Engineer.",
+  "longDescription": "This portfolio website serves as a central hub for my professional journey, featuring work experience, personal projects, and real-world projects. It highlights the technologies, tools, and achievements behind each project, providing visitors with a clear overview of my skills and development experience.",
+  "imageUrls": [
+    "https://github.com/user-attachments/assets/285d7689-84d5-40fd-990a-5724c373ca40"
+  ],
   "liveUrl": "https://personal-portofolio-lilac-one.vercel.app"
 }
