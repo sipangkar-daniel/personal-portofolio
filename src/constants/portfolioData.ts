@@ -198,7 +198,6 @@ export const experiencesData: Experience[] = [
   }
 ];
 
-export const projectsData: Project[] = [];
 
 export const testimonialsData: Testimonial[] = []; // Empty fallback ready for future testimonials
 
@@ -273,23 +272,23 @@ export const portfolioText = {
     description: "Read recommendations and feedback from peers, tech leads, and product owners who partnered on backend microservices migrations.",
   },
   contact: {
-    connectTag: "Let's Connect",
-    title: "Get In Touch",
-    description: "Interested in adding a high-throughput Java Spring Boot backend, a robust microservice architecture, or building full-stack dashboards? Let's align! Fill in the console stream or reach out via direct link.",
+    connectTag: "",
+    title: "Let's Talk",
+    description: "Got a backend problem to solve or a full-stack project in mind? Just say hi.",
     emailDispatchLabel: "Email Dispatch",
     telephonyLabel: "Instant Telephony",
     telephonyValue: "+62 822 7225 3799",
-    formTitle: "API Messaging Form",
-    nameLabel: "Your Name",
+    formTitle: "",
+    nameLabel: "Name",
     namePlaceholder: "John Doe",
     emailLabel: "Email Address",
     emailPlaceholder: "john@example.com",
-    messageLabel: "Payload Message",
-    messagePlaceholder: "Describe your project, system architecture requirements, or role openings...",
+    messageLabel: "Message",
+    messagePlaceholder: "Hi Daniel, I have a project idea about...",
     errorEmptyInputs: "Please fill in all inputs before transmission.",
-    successMsg: "Success: Message logged. Synchronization completes shortly. Thank you!",
-    transmittingText: "Transmitting Data...",
-    sendBtn: "Send Message",
+    successMsg: "Redirecting you to WhatsApp...",
+    transmittingText: "Redirecting to WhatsApp...",
+    sendBtn: "Send via WhatsApp →",
   },
   footer: {
     systemCore: "SYSTEM CORE: ACTIVE | RESPONDING 200 OK",

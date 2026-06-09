@@ -14,7 +14,7 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId }) => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center text-center px-4 w-full">
+      <div className="min-h-screen bg-transparent flex flex-col items-center justify-center text-center px-4 w-full">
         <div className="w-14 h-14 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 text-xl mb-4 shadow-md">
           <svg className="animate-spin h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24">
             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -31,7 +31,7 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId }) => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center text-center px-4 w-full">
+      <div className="min-h-screen bg-transparent flex flex-col items-center justify-center text-center px-4 w-full">
         <div className="w-14 h-14 rounded-full bg-slate-900 border border-red-900/50 flex items-center justify-center text-red-500 text-xl mb-4 shadow-md animate-pulse">
           ⚠️
         </div>
@@ -47,7 +47,7 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId }) => {
 
   if (!project) {
     return (
-      <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center text-center px-4 w-full">
+      <div className="min-h-screen bg-transparent flex flex-col items-center justify-center text-center px-4 w-full">
         <div className="w-14 h-14 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 text-xl mb-4 shadow-md">
           🔍
         </div>

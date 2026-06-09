@@ -15,7 +15,7 @@ export const ProjectSection: React.FC<ProjectSectionProps> = ({ projects, loadin
 
   if (loading) {
     return (
-      <section id="projects" className="w-full bg-slate-950">
+      <section id="projects" className="w-full bg-transparent">
         <div className="max-w-7xl mx-auto px-4 w-full py-16 md:py-24 text-left">
           <h2 className="text-4xl md:text-7xl font-extrabold text-white tracking-tight">
             {portfolioText.projects.title}
@@ -47,7 +47,7 @@ export const ProjectSection: React.FC<ProjectSectionProps> = ({ projects, loadin
 
   if (error) {
     return (
-      <section id="projects" className="w-full bg-slate-950">
+      <section id="projects" className="w-full bg-transparent">
         <div className="max-w-7xl mx-auto px-4 w-full py-16 md:py-24 text-left">
           <h2 className="text-4xl md:text-7xl font-extrabold text-white tracking-tight">
             {portfolioText.projects.title}
@@ -73,7 +73,7 @@ export const ProjectSection: React.FC<ProjectSectionProps> = ({ projects, loadin
   }
 
   return (
-    <section id="projects" className="w-full bg-slate-950">
+    <section id="projects" className="w-full bg-transparent">
       {projects.length === 0 ? (
         <div className="max-w-7xl mx-auto px-4 w-full py-16 md:py-24 text-left">
           <h2 className="text-4xl md:text-7xl font-extrabold text-white tracking-tight">

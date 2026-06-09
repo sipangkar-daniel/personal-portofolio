@@ -12,7 +12,7 @@ export const ExperienceDetail: React.FC<ExperienceDetailProps> = ({ experienceId
 
   if (!experience) {
     return (
-      <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center text-center px-4 w-full">
+      <div className="min-h-screen bg-transparent flex flex-col items-center justify-center text-center px-4 w-full">
         <div className="w-14 h-14 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 text-xl mb-4 shadow-md">
           🔍
         </div>

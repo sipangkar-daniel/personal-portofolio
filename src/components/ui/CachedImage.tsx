@@ -20,6 +20,19 @@ export const useCachedImage = (src: string | null | undefined) => {
     let objectUrl: string | null = null;
 
     const loadAndCacheImage = async () => {
+      // Bypass JS fetch caching for external URLs to prevent browser CORS console errors.
+      // The browser's native HTTP cache will handle caching for these assets automatically.
+      const isLocal =
+        !src.startsWith("http://") &&
+        !src.startsWith("https://") &&
+        !src.startsWith("//") ||
+        src.startsWith(window.location.origin);
+
+      if (!isLocal) {
+        if (isMounted) setImageSrc(src);
+        return;
+      }
+
       // Check if Cache API is supported (standard in HTTPS and localhost)
       if (!("caches" in window)) {
         if (isMounted) setImageSrc(src);

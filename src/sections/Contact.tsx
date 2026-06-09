@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Send, CheckCircle, Mail, MessageSquare } from "lucide-react";
+import { CheckCircle, Mail, MessageSquare } from "lucide-react";
 import { AnimatedButton } from "../components/ui/AnimatedButton";
 import { personalDescription, portfolioText } from "../constants/portfolioData";
 
 export const ContactSection: React.FC = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({ name: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
@@ -17,10 +17,18 @@ export const ContactSection: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) {
-      setErrorMsg(portfolioText.contact.errorEmptyInputs);
-      return;
-    }
+
+    const greetingLine = formData.name ? `I am *${formData.name}*, nice to meet you` : "";
+    const messageLine = formData.message ? `I have a project idea about...\n\n${formData.message}` : "";
+
+    const messageText = `Halo Daniel,
+
+${greetingLine}
+
+${messageLine}`.trim().replace(/\n{3,}/g, "\n\n");
+
+    const whatsappUrl = `https://api.whatsapp.com/send/?phone=6282272253799&text=${encodeURIComponent(messageText)}&type=phone_number&app_absent=0`;
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
 
     setIsSubmitting(true);
     
@@ -28,13 +36,13 @@ export const ContactSection: React.FC = () => {
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSuccess(true);
-      setFormData({ name: "", email: "", message: "" });
+      setFormData({ name: "", message: "" });
       
       // Auto-clear success message after 4s
       setTimeout(() => {
         setIsSuccess(false);
       }, 4000);
-    }, 1800);
+    }, 1200);
   };
 
   return (
@@ -44,9 +52,11 @@ export const ContactSection: React.FC = () => {
         {/* Info Column (Left) */}
         <div className="lg:col-span-5 flex flex-col justify-center text-left space-y-6">
           <div>
-            <span className="text-blue-500 font-bold uppercase tracking-wider text-xs md:text-sm">
-              {portfolioText.contact.connectTag}
-            </span>
+            {portfolioText.contact.connectTag && (
+              <span className="text-blue-500 font-bold uppercase tracking-wider text-xs md:text-sm">
+                {portfolioText.contact.connectTag}
+              </span>
+            )}
             <h2 className="text-3xl md:text-5xl font-extrabold text-white mt-2">
               {portfolioText.contact.title}
             </h2>
@@ -100,13 +110,15 @@ export const ContactSection: React.FC = () => {
             <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
 
             <form onSubmit={handleSubmit} className="space-y-6 text-left relative z-10">
-              <h3 className="text-xl font-bold text-white tracking-wide border-b border-slate-800 pb-3">
-                {portfolioText.contact.formTitle}
-              </h3>
+              {portfolioText.contact.formTitle && (
+                <h3 className="text-xl font-bold text-white tracking-wide border-b border-slate-800 pb-3">
+                  {portfolioText.contact.formTitle}
+                </h3>
+              )}
 
               {/* Name Input */}
               <div className="space-y-2">
-                <label htmlFor="name" className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                <label htmlFor="name" className="text-base font-bold text-slate-200">
                   {portfolioText.contact.nameLabel}
                 </label>
                 <input
@@ -120,25 +132,11 @@ export const ContactSection: React.FC = () => {
                 />
               </div>
 
-              {/* Email Input */}
-              <div className="space-y-2">
-                <label htmlFor="email" className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
-                  {portfolioText.contact.emailLabel}
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder={portfolioText.contact.emailPlaceholder}
-                  className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-white rounded-xl px-4 py-3 text-sm transition-all duration-200 outline-none placeholder:text-slate-600"
-                />
-              </div>
+
 
               {/* Message Input */}
               <div className="space-y-2">
-                <label htmlFor="message" className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                <label htmlFor="message" className="text-base font-bold text-slate-200">
                   {portfolioText.contact.messageLabel}
                 </label>
                 <textarea
@@ -185,7 +183,6 @@ export const ContactSection: React.FC = () => {
                     </span>
                   ) : (
                     <span className="flex items-center gap-2 justify-center">
-                      <Send className="w-4 h-4" />
                       {portfolioText.contact.sendBtn}
                     </span>
                   )}

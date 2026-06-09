@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 // Helper function to push history state and trigger event
 export const navigateTo = (path: string) => {
@@ -11,10 +11,17 @@ export const navigateTo = (path: string) => {
 
 export const useRouter = () => {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
+  const [previousPath, setPreviousPath] = useState<string | null>(null);
+  const pathRef = useRef(window.location.pathname);
 
   useEffect(() => {
     const handleLocationChange = () => {
-      setCurrentPath(window.location.pathname);
+      const newPath = window.location.pathname;
+      if (newPath !== pathRef.current) {
+        setPreviousPath(pathRef.current);
+        pathRef.current = newPath;
+        setCurrentPath(newPath);
+      }
     };
 
     window.addEventListener("popstate", handleLocationChange);
@@ -25,6 +32,7 @@ export const useRouter = () => {
 
   return {
     currentPath,
+    previousPath,
     navigate: navigateTo,
   };
 };

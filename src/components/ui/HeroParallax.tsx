@@ -100,7 +100,7 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({
   return (
     <div
       ref={containerRef}
-      className="py-10 md:py-20 overflow-hidden bg-slate-950 flex flex-col self-stretch [perspective:1000px] [transform-style:preserve-3d] relative"
+      className="py-10 md:py-20 overflow-hidden bg-transparent flex flex-col self-stretch [perspective:1000px] [transform-style:preserve-3d] relative"
     >
       <motion.div style={{ y: isMobile ? 0 : headerY, opacity: isMobile ? 1 : headerOpacity }}>
         <Header title={title} description={description} />

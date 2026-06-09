@@ -48,7 +48,7 @@ export const DetailLayout: React.FC<DetailLayoutProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 py-16 md:py-24 px-4 md:px-12 max-w-7xl mx-auto w-full">
+    <div className="min-h-screen bg-transparent text-slate-100 py-16 md:py-24 px-4 md:px-12 max-w-7xl mx-auto w-full">
       {/* Back Button Link */}
       <div className="mb-8 md:mb-12">
         <a

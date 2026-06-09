@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
 import { SectionWrapper } from "./components/layout/SectionWrapper";
@@ -15,8 +15,33 @@ import { ExperienceDetail } from "./pages/ExperienceDetail";
 import "./App.css";
 
 const App: React.FC = () => {
-  const { currentPath } = useRouter();
+  const { currentPath, previousPath } = useRouter();
   const projectsDataState = useProjects();
+
+  useEffect(() => {
+    if (currentPath === "/") {
+      let targetId = "";
+      if (window.location.hash) {
+        targetId = window.location.hash;
+      } else if (previousPath) {
+        if (previousPath.startsWith("/project/")) {
+          targetId = "#projects";
+        } else if (previousPath.startsWith("/experience/")) {
+          targetId = "#experience";
+        }
+      }
+
+      if (targetId) {
+        const timer = setTimeout(() => {
+          const element = document.querySelector(targetId);
+          if (element) {
+            element.scrollIntoView({ behavior: "instant" });
+          }
+        }, 150);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [currentPath, previousPath]);
 
   const renderContent = () => {
     // Check for Project Detail Route: /project/:id
