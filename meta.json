@@ -3,7 +3,7 @@
   "shortDescription": "A personal portfolio website showcasing my professional experience, projects, and the technologies and tools I use as a Software Engineer.",
   "longDescription": "This portfolio website serves as a central hub for my professional journey, featuring work experience, personal projects, and real-world projects. It highlights the technologies, tools, and achievements behind each project, providing visitors with a clear overview of my skills and development experience.",
   "imageUrls": [
-    "https://github.com/user-attachments/assets/285d7689-84d5-40fd-990a-5724c373ca40"
+    "https://github-production-user-asset-6210df.s3.amazonaws.com/45484386/605221864-285d7689-84d5-40fd-990a-5724c373ca40.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20260609%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260609T171708Z&X-Amz-Expires=300&X-Amz-Signature=32b24ceaa8f7f69cfa5e561d3ad2770dd4ff0226205a01c0aee1047f3335e46f&X-Amz-SignedHeaders=host&response-content-type=image%2Fpng"
   ],
   "liveUrl": "https://personal-portofolio-lilac-one.vercel.app"
 }
