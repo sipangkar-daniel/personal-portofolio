@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring, type MotionValue } from "framer-motion";
 import type { Project } from "../../constants/portfolioData";
 import { cn } from "../../utils/cn";
+import { CachedImage } from "./CachedImage";
 
 interface HeroParallaxProps {
   projects: Project[];
@@ -64,31 +65,35 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({
 
   const springConfig = { stiffness: 100, damping: 30, bounce: 0 };
 
+  // Parallax Header effects
+  const headerY = useTransform(scrollYProgress, [0, 0.8], [0, 120]);
+  const headerOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0.8]);
+
   // Horizontal translation effects
   const translateX = useSpring(
-    useTransform(scrollYProgress, [0, 1], [-250, 250]),
+    useTransform(scrollYProgress, [0, 1], [-80, 80]),
     springConfig
   );
   const translateXReverse = useSpring(
-    useTransform(scrollYProgress, [0, 1], [250, -250]),
+    useTransform(scrollYProgress, [0, 1], [80, -80]),
     springConfig
   );
 
   // 3D Tilt perspective effects
   const rotateX = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [15, 0]),
+    useTransform(scrollYProgress, [0, 0.2], [8, 0]),
     springConfig
   );
   const opacity = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [0.4, 1]),
+    useTransform(scrollYProgress, [0, 0.2], [0.6, 1]),
     springConfig
   );
   const rotateZ = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [10, 0]),
+    useTransform(scrollYProgress, [0, 0.2], [5, 0]),
     springConfig
   );
   const translateY = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [-400, 0]),
+    useTransform(scrollYProgress, [0, 0.2], [120, 0]),
     springConfig
   );
 
@@ -97,7 +102,9 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({
       ref={containerRef}
       className="py-10 md:py-20 overflow-hidden bg-slate-950 flex flex-col self-stretch [perspective:1000px] [transform-style:preserve-3d] relative"
     >
-      <Header title={title} description={description} />
+      <motion.div style={{ y: isMobile ? 0 : headerY, opacity: isMobile ? 1 : headerOpacity }}>
+        <Header title={title} description={description} />
+      </motion.div>
       
       <motion.div
         style={{
@@ -150,15 +157,12 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({
   );
 };
 
-const Header = ({ title, description }: { title?: string; description?: string }) => {
+const Header = ({ title }: { title?: string; description?: string }) => {
   return (
-    <div className="max-w-7xl mx-auto px-4 w-full py-12 md:py-20 relative z-10 flex flex-col justify-start">
+    <div className="max-w-7xl mx-auto px-4 w-full pt-12 pb-6 md:pt-16 md:pb-8 relative z-10 flex flex-col justify-start">
       <h2 className="text-4xl md:text-7xl font-extrabold text-white tracking-tight">
         {title || "Featured Projects"}
       </h2>
-      <p className="max-w-2xl text-base md:text-xl mt-6 text-slate-400 leading-relaxed">
-        {description || "Explore a curated collection of high-performance microservices, API engines, caching layers, and responsive full-stack solutions built using Java Spring Boot and React."}
-      </p>
     </div>
   );
 };
@@ -229,7 +233,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       )}
     >
       <div className="absolute inset-0">
-        <img
+        <CachedImage
           src={project.thumbnail}
           alt={project.title}
           className="object-cover object-center absolute h-full w-full inset-0 group-hover/product:scale-105 transition-transform duration-500"

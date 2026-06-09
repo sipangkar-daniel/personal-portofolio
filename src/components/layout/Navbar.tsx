@@ -3,12 +3,41 @@ import { Menu, X, Terminal } from "lucide-react";
 import { useScrollResize } from "../../hooks/useScrollResize";
 import { cn } from "../../utils/cn";
 import { personalDescription, portfolioText } from "../../constants/portfolioData";
+import { useRouter } from "../../hooks/useRouter";
 
 export const Navbar: React.FC = () => {
   const isScrolled = useScrollResize(60);
   const [isOpen, setIsOpen] = useState(false);
+  const { currentPath, navigate } = useRouter();
 
   const navLinks = portfolioText.navbar.navLinks;
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      if (currentPath !== "/") {
+        navigate("/" + href);
+        // Delay to allow DOM update on landing home
+        setTimeout(() => {
+          const element = document.querySelector(href);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 150);
+      } else {
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    }
+    setIsOpen(false);
+  };
+
+  const handleBrandClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    navigate("/");
+  };
 
   return (
     <nav
@@ -20,7 +49,7 @@ export const Navbar: React.FC = () => {
       )}
     >
       {/* Brand Logo */}
-      <a href="#" className="flex items-center gap-2 group">
+      <a href="/" onClick={handleBrandClick} className="flex items-center gap-2 group">
         <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold group-hover:bg-blue-500 transition-colors duration-200 shadow-md">
           <Terminal className="w-4 h-4" />
         </div>
@@ -35,6 +64,7 @@ export const Navbar: React.FC = () => {
           <a
             key={link.label}
             href={link.href}
+            onClick={(e) => handleLinkClick(e, link.href)}
             className="text-slate-300 hover:text-blue-400 hover:bg-blue-950/20 hover:border-blue-900/30 border border-transparent px-3 py-1.5 rounded-lg font-medium text-sm transition-all duration-300 hover:shadow-[0_0_15px_rgba(59,130,246,0.15)]"
           >
             {link.label}
@@ -46,6 +76,7 @@ export const Navbar: React.FC = () => {
       <div className="hidden md:block">
         <a
           href="#contact"
+          onClick={(e) => handleLinkClick(e, "#contact")}
           className="px-4 py-2 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-500 rounded-lg transition-all duration-200 shadow-md shadow-blue-900/20"
         >
           {portfolioText.navbar.ctaText}
@@ -83,7 +114,7 @@ export const Navbar: React.FC = () => {
             <a
               key={link.label}
               href={link.href}
-              onClick={() => setIsOpen(false)}
+              onClick={(e) => handleLinkClick(e, link.href)}
               className="text-slate-300 hover:text-blue-400 font-semibold text-base transition-colors duration-200"
             >
               {link.label}
@@ -102,7 +133,7 @@ export const Navbar: React.FC = () => {
           </a>
         </div>
       </div>
-      
+
       {/* Background shadow for mobile overlay */}
       {isOpen && (
         <div

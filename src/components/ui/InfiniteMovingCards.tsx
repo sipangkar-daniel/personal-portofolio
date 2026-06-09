@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { cn } from "../../utils/cn";
+import { CachedImage } from "./CachedImage";
 
 interface TestimonialItem {
   id: string;
@@ -128,7 +129,7 @@ export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
               </span>
               <div className="relative z-20 mt-6 flex flex-row items-center gap-3 border-t border-slate-800/80 pt-4">
                 {item.avatar && (
-                  <img
+                  <CachedImage
                     src={item.avatar}
                     alt={item.name}
                     className="w-10 h-10 rounded-full object-cover border border-slate-700"

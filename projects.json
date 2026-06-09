@@ -1,0 +1,44 @@
+[
+  {
+    "type": "github",
+    "owner": "sipangkar-daniel",
+    "repo": "personal-portofolio"
+  },
+  {
+    "type": "github",
+    "owner": "sipangkar-daniel",
+    "repo": "timesheet-builder"
+  },
+  {
+    "type": "hardcoded",
+    "data": {
+      "title": "Microservices Banking API",
+      "category": "Backend",
+      "description": "Secure core banking transaction processing REST APIs with OAuth2 authentication and Spring Cloud Gateway.",
+      "longDescription": "A robust and secure banking core engine designed under microservice architecture. It features resilient service discovery (Eureka), centralized gateway routing (Spring Cloud Gateway), distributed tracing (Zipkin), and rate limiting. Transactions are validated using Spring Security OAuth2 with JSON Web Tokens (JWT) for high security standards.",
+      "imageUrls": [
+        "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&q=80&w=800"
+      ],
+      "technologies": ["Java", "Spring Boot", "OracleDB", "Docker"],
+      "isPrivate": true,
+      "liveUrl": "",
+      "htmlUrl": ""
+    }
+  },
+  {
+    "type": "hardcoded",
+    "data": {
+      "title": "Event-Driven Notification Engine",
+      "category": "Real Project",
+      "description": "Highly scalable email/SMS broadcasting service processing events from Apache Kafka message queue.",
+      "longDescription": "An event-driven notification engine that consumes application alerts, transactional receipts, and advertising broadcasts from Kafka topics. It matches events with templates dynamically using Thymeleaf, checks rate limiting, and dispatches requests through configured email / SMS APIs in parallel worker threads, securing 99.99% message delivery.",
+      "imageUrls": [
+        "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800"
+      ],
+      "technologies": ["Java", "Spring Boot", "Kafka", "PostgreSQL"],
+      "isPrivate": false,
+      "liveUrl": "https://daniel-sipangkar.dev/demo/notification-engine",
+      "htmlUrl": "https://github.com/daniel-sipangkar/notification-engine"
+    }
+  }
+]

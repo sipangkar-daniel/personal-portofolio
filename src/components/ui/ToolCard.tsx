@@ -1,5 +1,6 @@
 import React from "react";
 import { cn } from "../../utils/cn";
+import { CachedImage } from "./CachedImage";
 
 interface ToolCardProps {
   name: string;
@@ -34,7 +35,7 @@ export const ToolCard: React.FC<ToolCardProps> = ({ name, icon, fallbackIcon, cl
           className="flex items-center justify-center z-10 pointer-events-none transition-all duration-300 ease-out translate-y-0 scale-[1.3] group-hover/tool:translate-y-[-10px] group-hover/tool:scale-[1.0]"
         >
           <div className="w-8 h-8 flex items-center justify-center">
-            <img
+            <CachedImage
               src={icon}
               alt={name}
               onError={handleImageError}

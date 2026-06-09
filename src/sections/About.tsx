@@ -8,6 +8,7 @@ import { AnimatedButton } from "../components/ui/AnimatedButton";
 import { personalDescription, techStack, portfolioText } from "../constants/portfolioData";
 import { Ripple } from "../components/ui/Ripple";
 import { ShineBorder } from "../components/ui/ShineBorder";
+import { CachedImage } from "../components/ui/CachedImage";
 import profileImage from "../assets/image/profile_image.png";
 
 export const About: React.FC = () => {
@@ -160,7 +161,7 @@ ${portfolioText.about.resumeSummaryText}
                 <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
                 
                 {/* User Profile Photo (Full Card Cutout) */}
-                <img
+                <CachedImage
                   src={profileImage}
                   alt={personalDescription.name}
                   className="absolute bottom-0 inset-x-0 h-[80%] md:h-[100%] w-auto mx-auto object-contain object-bottom select-none transition-transform duration-500 group-hover:scale-105 z-10 scroll-reveal"
