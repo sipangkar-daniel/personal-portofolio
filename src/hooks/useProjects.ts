@@ -42,7 +42,7 @@ export const useProjects = () => {
                 ? [repo.language]
                 : [],
             isPrivate: isPrivate,
-            repoUrl: repo.githubUrl || repo.htmlUrl,
+            repoUrl: (repo as any).githubUrl || repo.htmlUrl,
             liveUrl: repo.liveUrl || (repo.raw && repo.raw.homepage) || repo.htmlUrl,
             category: repo.category || (isPrivate ? "Private Project" : "Personal Project"),
             imageUrls: repo.imageUrls,
